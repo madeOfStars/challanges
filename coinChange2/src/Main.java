@@ -1,8 +1,10 @@
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
-    public static int getWays(List<Integer> list, int length, int total) {
+
+    static Map<String, Long> cachedResults = new HashMap<>();
+
+    public static long getWays(List<Integer> list, int length, int total) {
         if (length <= 0 && total >= 1)
             return 0;
         if (total == 0)
@@ -10,11 +12,18 @@ public class Main {
         if (total < 0)
             return 0;
 
-        return getWays(list, length - 1, total) + getWays(list, length, total - list.get(length - 1));
+        String key = length + "|" + total;
+
+        if (!cachedResults.containsKey(key)) {
+            cachedResults.put(key, getWays(list, length - 1, total) + getWays(list, length, total - list.get(length - 1)));
+        }
+
+        return cachedResults.get(key);
     }
+
     public static void main(String[] args) {
-        int n = 250;
-        List<Integer> list = Arrays.asList(41, 34, 46, 9, 37, 32, 42, 21, 7, 13, 1, 24, 3, 43, 2, 23, 8, 45, 19, 30, 29, 18, 35, 11);
+        int n = 85;
+        List<Integer> list = Arrays.asList(50, 10, 17, 21, 8, 3, 12, 41, 9, 13, 43, 37, 49, 19, 23, 28, 45, 46, 29, 16, 34, 25, 2, 22, 1);
         System.out.println(getWays(list, list.size(), n));
     }
 }
