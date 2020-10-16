@@ -5,8 +5,7 @@ https://leetcode.com/problems/merge-two-sorted-lists/
 public class Main {
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode result = new ListNode();
-        ListNode dummy = new ListNode();
-        dummy = result;
+        ListNode dummy = result;
 
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
@@ -38,7 +37,7 @@ public class Main {
 
         ListNode l5 = new ListNode(0);
 
-        ListNode output1 = mergeTwoLists(l1, l2);
+        ListNode output1 = mergeTwoLists(l3, l5);
 
 
         while (output1 != null) {
