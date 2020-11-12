@@ -2,6 +2,8 @@
 https://leetcode.com/problems/merge-two-sorted-lists/
  */
 
+import linkedlists.ListNode;
+
 public class Main {
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode result = new ListNode();
@@ -43,23 +45,6 @@ public class Main {
         while (output1 != null) {
             System.out.println(output1.val);
             output1 = output1.next;
-        }
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
         }
     }
 }

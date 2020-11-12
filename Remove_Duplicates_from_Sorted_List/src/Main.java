@@ -2,6 +2,8 @@
 https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 
+import linkedlists.ListNode;
+
 public class Main {
     public static ListNode deleteDuplicates(ListNode head) {
         ListNode currentPointer = new ListNode();
@@ -31,22 +33,5 @@ public class Main {
 
         System.out.println(x1);
         System.out.println(x2);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }

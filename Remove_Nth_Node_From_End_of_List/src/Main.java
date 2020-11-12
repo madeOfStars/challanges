@@ -2,6 +2,8 @@
 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  */
 
+import linkedlists.ListNode;
+
 public class Main {
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode();
@@ -34,23 +36,5 @@ public class Main {
         ListNode output3 = removeNthFromEnd(l3, 1);
 
         int i = 5;
-    }
-
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }

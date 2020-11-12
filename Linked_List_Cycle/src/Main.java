@@ -2,17 +2,9 @@
 https://leetcode.com/problems/linked-list-cycle/
  */
 
+import linkedlists.ListNode;
+
 public class Main {
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
     public static boolean hasCycle(ListNode head) {
         if (head == null)
             return false;

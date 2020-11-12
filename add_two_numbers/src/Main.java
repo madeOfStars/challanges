@@ -4,6 +4,8 @@ The digits are stored in reverse order and each of their nodes contain a single 
 Add the two numbers and return it as a linked list.
  */
 
+import linkedlists.ListNode;
+
 public class Main {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carriedDigit = 0;
@@ -45,24 +47,5 @@ public class Main {
             System.out.println(output.val);
             output = output.next;
         }
-    }
-}
-
-
-//Definition for singly-linked list.
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }
