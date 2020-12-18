@@ -1,3 +1,7 @@
+/*
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+ */
+
 package trees;
 
 import java.util.ArrayDeque;
@@ -42,10 +46,38 @@ public class SerializeAndDeserializeBinaryTree {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-
         String[] nodes = data.split(",");
+        if (data.isBlank() || data.isEmpty() && nodes.length == 0) {
+            return null;
+        }
 
-        return null;
+        TreeNode tree = new TreeNode(Integer.parseInt(nodes[0]));
+
+        int k = 1;
+        Queue<TreeNode> queue = new LinkedList<>();
+        k = getK(nodes, k, queue, tree);
+
+        while (!queue.isEmpty()) {
+            TreeNode polledNode = queue.poll();
+
+            k = getK(nodes, k, queue, polledNode);
+        }
+
+        return tree;
+    }
+
+    private int getK(String[] nodes, int k, Queue<TreeNode> queue, TreeNode polledNode) {
+        if (k < nodes.length && !nodes[k].equals("null")) {
+            polledNode.left = new TreeNode(Integer.parseInt(nodes[k]));
+            queue.add(polledNode.left);
+        }
+        k++;
+        if (k < nodes.length && !nodes[k].equals("null")) {
+            polledNode.right = new TreeNode(Integer.parseInt(nodes[k]));
+            queue.add(polledNode.right);
+        }
+        k++;
+        return k;
     }
 
     public static void main(String[] args) {
@@ -61,6 +93,9 @@ public class SerializeAndDeserializeBinaryTree {
 
         SerializeAndDeserializeBinaryTree serializeAndDeserializeBinaryTree = new SerializeAndDeserializeBinaryTree();
 
-        System.out.println(serializeAndDeserializeBinaryTree.serialize(root));
+        String serializedTree = serializeAndDeserializeBinaryTree.serialize(root);
+        System.out.println(serializedTree);
+
+        System.out.println(serializeAndDeserializeBinaryTree.deserialize(""));
     }
 }
