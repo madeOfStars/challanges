@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyCircularQueue {
-    private List<Integer> data;
-    private int size;
+    private final List<Integer> data;
+    private final int size;
     private int head;
     private int tail;
 
