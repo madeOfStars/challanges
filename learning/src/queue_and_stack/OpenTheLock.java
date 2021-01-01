@@ -1,3 +1,6 @@
+/*
+https://leetcode.com/problems/open-the-lock/
+ */
 package queue_and_stack;
 
 import java.util.*;
@@ -12,10 +15,27 @@ public class OpenTheLock {
         if (visited.contains(start))
             return -1;
 
-        List<Integer> incrementals = List.of(1000, 100, 10, 1, -1000, -100, -10, -1);
-        Queue<Integer> nodes = new PriorityQueue<>();
-        nodes.add(0);
-        visited.add(0);
+        int[] incrementals = new int[8];
+
+        int pow = 3;
+
+        for (int i = 0; i < target.length(); i++) {
+            int value = Character.getNumericValue(target.charAt(i));
+
+            if (value < 5) {
+                incrementals[i] = (int) Math.pow(10, pow);
+                incrementals[i + 4] = (int) (-1 * Math.pow(10, pow));
+            } else {
+                incrementals[i] = (int) (-1 * Math.pow(10, pow));
+                incrementals[i + 4] = (int) Math.pow(10, pow);
+            }
+
+            pow--;
+        }
+
+        Queue<Integer> nodes = new LinkedList<>();
+        nodes.add(start);
+        visited.add(start);
 
         int step = 0;
 
@@ -24,19 +44,26 @@ public class OpenTheLock {
             step++;
 
             for (int i = 0; i < size; i++) {
-                Integer peekedNode = nodes.peek();
+                Integer polledNode = nodes.poll();
 
-                if (peekedNode == Integer.parseInt(target))
-                    return step;
+                System.out.print(polledNode + " <- ");
+
+                if (polledNode == Integer.parseInt(target)) {
+                    System.out.println();
+                    return step - 1;
+                }
 
                 for (Integer incremental : incrementals) {
-                    int nextNode = (peekedNode + incremental) % 10000;
+                    int nextNode = (polledNode + incremental) % 10000;
+
+                    if (nextNode < 0)
+                        nextNode = Math.abs(incremental * 10) + nextNode;
+
                     if (!visited.contains(nextNode)) {
                         visited.add(nextNode);
                         nodes.add(nextNode);
                     }
                 }
-                nodes.poll();
             }
         }
 
@@ -44,15 +71,15 @@ public class OpenTheLock {
     }
 
     public static void main(String[] args) {
-        String[] deadends1 = new String[] {"0201","0101","0102","1212","2002"};
+        String[] deadends1 = new String[]{"0201", "0101", "0102", "1212", "2002"};
         String target1 = "0202";
 
-        String[] deadends2 = new String[] {"8888"};
-        String target2 = "0009";
+        String[] deadends2 = new String[]{"8888"};
+        String target2 = "7125";
 
-        String[] deadends3 = new String[] {"8887","8889","8878","8898","8788","8988","7888","9888"};
+        String[] deadends3 = new String[]{"8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"};
         String target3 = "8888";
 
-        System.out.println(openLock(deadends3, target3));
+        System.out.println(openLock(deadends1, target1));
     }
 }
