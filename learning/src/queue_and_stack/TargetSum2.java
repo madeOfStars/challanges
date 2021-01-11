@@ -3,21 +3,31 @@ https://leetcode.com/problems/target-sum/
  */
 package queue_and_stack;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TargetSum2 {
     public static int findTargetSumWays(int[] nums, int S) {
         if (nums.length == 0)
             return 0;
 
-        return findTargetSumWays(nums, nums.length - 1, S);
+        Map<String, Integer> cachedResults = new HashMap<>();
+
+        return findTargetSumWays(nums, nums.length - 1, S, cachedResults);
     }
 
-    public static int findTargetSumWays(int[] nums, int length, int S) {
+    public static int findTargetSumWays(int[] nums, int length, int S, Map<String, Integer> cachedResults) {
         if (length < 0 && S == 0)
             return 1;
         if (length < 0)
             return 0;
 
-        return findTargetSumWays(nums, length - 1, S - nums[length]) + findTargetSumWays(nums, length - 1, S + nums[length]);
+        String key = length + "|" + S;
+
+        if (!cachedResults.containsKey(key))
+            cachedResults.put(key, findTargetSumWays(nums, length - 1, S - nums[length], cachedResults) + findTargetSumWays(nums, length - 1, S + nums[length], cachedResults));
+
+        return cachedResults.get(key);
     }
 
     public static void main(String[] args) {
