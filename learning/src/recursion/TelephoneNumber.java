@@ -78,7 +78,7 @@ public class TelephoneNumber {
     public static void main(String[] args) {
         TelephoneNumber tn = new TelephoneNumber(new int[]{8, 6, 6, 2, 6, 6, 5});
 
-//        tn.printWords();
+        tn.printWords();
         tn.printWordsBFS();
     }
 }
