@@ -9,13 +9,11 @@ public class Search2DMatrixII_Iter {
         int j = 0;
 
 
-        boolean found = false;
-
-        while (!found && i >= 0 && j < matrix[0].length) {
+        while (i >= 0 && j < matrix[0].length) {
             int startingPos = matrix[i][j];
 
             if (startingPos == target)
-                found = true;
+                return true;
             else if (startingPos > target)
                 i--;
             else
@@ -23,7 +21,7 @@ public class Search2DMatrixII_Iter {
 
         }
 
-        return found;
+        return false;
     }
 
     public static void main(String[] args) {
