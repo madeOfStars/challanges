@@ -82,9 +82,6 @@ public class NQueens {
     public static void main(String[] args) {
         NQueens nq = new NQueens();
 
-        /*System.out.println(nq.solveNQueens(1));
-        System.out.println(nq.solveNQueens(2));
-        System.out.println(nq.solveNQueens(3));*/
         System.out.println(nq.solveNQueens(4));
     }
 }
