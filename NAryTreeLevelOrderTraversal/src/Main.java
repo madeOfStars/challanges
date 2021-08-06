@@ -29,7 +29,7 @@ public class Main {
             return List.of();
 
         Queue<Node> queue = new LinkedList<>();
-        List<List<Integer>> ressult = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
@@ -45,10 +45,10 @@ public class Main {
                     queue.addAll(polledElement.children);
             }
 
-            ressult.add(new ArrayList<>(temp));
+            result.add(new ArrayList<>(temp));
         }
 
-        return ressult;
+        return result;
     }
 
     public static void main(String[] args) {
