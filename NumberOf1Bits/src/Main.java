@@ -1,6 +1,7 @@
 /*
 https://leetcode.com/problems/number-of-1-bits/submissions/
  */
+
 public class Main {
     public int hammingWeight(int n) {
         int ans = 0;
