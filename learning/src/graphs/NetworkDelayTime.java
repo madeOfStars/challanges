@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Set;
 
 public class NetworkDelayTime {
     private record Pair(Integer left, Integer right) {}
@@ -30,9 +28,7 @@ public class NetworkDelayTime {
         Arrays.fill(dist, Integer.MAX_VALUE);
 
         Queue<Pair> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a.right));
-        Set<Integer> visited = new HashSet<>();
         queue.add(new Pair(k, 0));
-        visited.add(k);
         dist[k] = 0;
 
         while (!queue.isEmpty()) {
@@ -46,12 +42,7 @@ public class NetworkDelayTime {
                 continue;
             }
 
-            visited.add(polledNode.left);
-
             for (var nextNode : adj.get(polledNode.left)) {
-                if (visited.contains(nextNode)) {
-                    continue;
-                }
 
                 var neighbor = nextNode.left;
                 var time = nextNode.right;
