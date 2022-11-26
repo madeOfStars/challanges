@@ -2,14 +2,15 @@
 https://leetcode.com/problems/valid-parentheses/
  */
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Main {
     public static boolean isValid(String s) {
         if (s.length() == 1)
             return false;
 
-        Stack<Character> parenthesis = new Stack<>();
+        Deque<Character> parenthesis = new ArrayDeque<>();
         parenthesis.push(s.charAt(0));
 
         for (int i = 1; i < s.length(); i++) {
