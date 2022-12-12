@@ -28,14 +28,14 @@ public class WordLadder {
             int size = queue.size();
 
             for (int i = 0; i < size; i++) {
-                char[] letters = queue.poll().toCharArray();
+                String polledString = queue.poll();
 
-                if (new String(letters).equals(endWord)) {
+                if (polledString.equals(endWord)) {
                     return count;
                 }
 
-                for (int index = 0; index < letters.length; index++) {
-                    char[] mutableLetters = Arrays.copyOf(letters, letters.length);
+                for (int index = 0; index < polledString.length(); index++) {
+                    char[] mutableLetters = polledString.toCharArray();
                     for (char digit = 'a'; digit <= 'z'; digit++) {
                         mutableLetters[index] = digit;
 
